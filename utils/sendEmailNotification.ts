@@ -4,11 +4,13 @@ interface sendMyNotificationInterface {
   userName: string;
   tel: string;
   email: string;
+  cep: string;
 }
 async function sendMyNotification({
   userName,
   tel,
   email,
+  cep,
 }: sendMyNotificationInterface): Promise<void> {
   const transporter = nodemailer.createTransport({
     host: "smtp.zoho.com",
@@ -31,6 +33,7 @@ async function sendMyNotification({
         <strong>Nome: </strong>${userName}<br/>
         <strong>Email: </strong>${email}<br/>
         <strong>Telefone: </strong>${tel}<br/>
+        <strong>CEP: </strong>${cep}<br/>
       </p>
     `,
   });

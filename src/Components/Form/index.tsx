@@ -2,31 +2,39 @@ import React, { FormEvent, useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { Container } from "./styles";
+
+
+
+
+
+
 export default function Form() {
   const [userName, setUserName] = useState("");
   const [tel, setTel] = useState("");
   const [email, setEmail] = useState("");
+  const [cep, setCep] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    console.log("enviado");
-    if (!email) {
-      toast.error("email nescessário.");
-    }
-    if (userName !== "" && tel !== "" && email !== "") {
+    console.log("entrando na condição");
+    
+    if (userName !== "" && tel !== "" && email !== "" && cep !== "") {
+      console.log("passou da condição");
       console.log("entrando na api");
-
+      
       axios
         .post("/api/mail", {
           userName,
           tel,
           email,
+          cep,
         })
         .then(() => {
           setUserName("");
           setTel("");
           setEmail("");
+          setCep("");
           toast.success("Formulário enviado com secesso!", {
             id: email,
             style: {
@@ -39,8 +47,22 @@ export default function Form() {
             "Erro ao enviar o formulário! Por favor, tente novamente mais tarde."
           );
         });
+        console.log("saindo da api");
+        
     }
   }
+
+  //mask para inputs
+  const maskPhone = (value) => {
+    return value
+      .replace(/\D/g, "")
+      .replace(/(\d{2})(\d)/, "($1) $2")
+      .replace(/(\d{5})(\d{4})(\d)/, "$1-$2");
+  };
+  //mask para cep
+  const maskCEP = (value) => {
+    return value.replace(/\D/g, "").replace(/^(\d{5})(\d{3})+?$/, "$1-$2");
+  };
 
   return (
     <>
@@ -63,18 +85,27 @@ export default function Form() {
             // name="telefone"
             placeholder="Seu telefone"
             className="telefone"
-            onChange={(e) => setTel(e.target.value)}
+            onChange={(e) => setTel(maskPhone(e.target.value))}
             value={tel}
           />
           <label htmlFor="e">E-mail</label>
           <input
-            type="mail"
+            type="email"
             id="e"
             // name="email"
             placeholder="Seu e-mail"
             className="email"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
+          />
+          <label htmlFor="C">CEP</label>
+          <input
+            type="text"
+            id="C"
+            placeholder="Seu CEP"
+            className="cep"
+            onChange={(e) => setCep(maskCEP(e.target.value))}
+            value={cep}
           />
           <button
             type="submit"
