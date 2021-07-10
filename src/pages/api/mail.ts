@@ -12,5 +12,5 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     tel,
     email,
   });
-  return response.status(201).json({ ok: true });
+  return response.status(200).json({ ok: true });
 };
