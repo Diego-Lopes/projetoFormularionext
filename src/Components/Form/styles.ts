@@ -15,5 +15,8 @@ export const Container = styled.div`
     gap input {
       font-size: 1.5rem;
     }
+    button {
+      width: 100%;
+    }
   }
 `;

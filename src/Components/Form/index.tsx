@@ -8,7 +8,7 @@ export default function Form() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  async function handleSubmit(e: FormEvent) {
+  function handleSubmit(e: FormEvent) {
     e.preventDefault();
     console.log("enviado");
     if (!email) {
@@ -17,7 +17,7 @@ export default function Form() {
     if (userName !== "" && tel !== "" && email !== "") {
       console.log("entrando na api");
 
-      await axios
+      axios
         .post("/api/mail", {
           userName,
           tel,
@@ -27,10 +27,17 @@ export default function Form() {
           setUserName("");
           setTel("");
           setEmail("");
-          toast.success("Formulário enviado com secesso!");
+          toast.success("Formulário enviado com secesso!", {
+            id: email,
+            style: {
+              width: "auto",
+            },
+          });
         })
         .catch(() => {
-          "deu erro";
+          toast.error(
+            "Erro ao enviar o formulário! Por favor, tente novamente mais tarde."
+          );
         });
     }
   }
@@ -69,15 +76,14 @@ export default function Form() {
             onChange={(e) => setEmail(e.target.value)}
             value={email}
           />
-          <input
+          <button
             type="submit"
             // name="button"
             value="Enviar dados"
             className="botao"
-            onChange={(e) => {
-              handleSubmit(e);
-            }}
-          />
+          >
+            Enviar
+          </button>
         </form>
         <Toaster position="top-right" reverseOrder={false} />
       </Container>

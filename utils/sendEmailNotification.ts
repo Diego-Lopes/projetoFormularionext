@@ -5,18 +5,18 @@ interface sendMyNotificationInterface {
   tel: string;
   email: string;
 }
-export default async function sendMyNotificationInterface({
+async function sendMyNotification({
   userName,
   tel,
   email,
 }: sendMyNotificationInterface): Promise<void> {
   const transporter = nodemailer.createTransport({
-    host: "smtp.zoho.com",
+    host: "smtp.gmail.com",
     port: 587,
     secure: false,
     auth: {
-      user: "marketing@lojasoi.com",
-      pass: "Lk2Ul^G%@1ri",
+      user: "diegojob09@gmail.com",
+      pass: "diego.lopes.18",
     },
   });
   await transporter.sendMail({
@@ -35,3 +35,4 @@ export default async function sendMyNotificationInterface({
     `,
   });
 }
+export default sendMyNotification;

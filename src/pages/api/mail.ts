@@ -1,20 +1,16 @@
-import { NextApiRequest, NextApiResponse } from "next/types";
+/* eslint-disable  */
 
-import sendNotification from "../../../utils/sendNotification";
+import { VercelRequest, VercelResponse } from "@vercel/node";
 
-export default async function mail(
-  req: NextApiRequest,
-  res: NextApiResponse
-): Promise<void> {
-  if (req.method === "POST") {
-    const { userName, tel, email } = req.body;
-    sendNotification({
-      userName,
-      tel,
-      email,
-    });
-    return res.status(200).json({ sucess: "email is send" });
-  } else {
-    return res.status(400).json({ error: "invalid request method" });
-  }
-}
+import sendNotification from "../../../utils/sendEmailNotification";
+
+export default async (request: VercelRequest, response: VercelResponse) => {
+  const { userName, tel, email } = request.body;
+
+  await sendNotification({
+    userName,
+    tel,
+    email,
+  });
+  return response.status(200).json({ ok: true });
+};
