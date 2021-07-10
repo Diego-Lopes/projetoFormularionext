@@ -2,7 +2,6 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
       
-
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,
@@ -50,9 +49,9 @@ export default createGlobalStyle`
     border-spacing: 0;
   }
   * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-      }
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
 `;
