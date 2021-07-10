@@ -11,16 +11,16 @@ async function sendMyNotification({
   email,
 }: sendMyNotificationInterface): Promise<void> {
   const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
+    host: "smtp.zoho.com",
     port: 587,
     secure: false,
     auth: {
-      user: "diegojob09@gmail.com",
-      pass: "diego.lopes.18",
+      user: "teste351@zohomail.com",
+      pass: "diego.lopes",
     },
   });
   await transporter.sendMail({
-    from: "Marketing <marketing@lojasoi.com>",
+    from: "Marketing <teste351@zohomail.com>",
     to: "diegojob09@gmail.com",
     subject: "teste local",
     html: `
