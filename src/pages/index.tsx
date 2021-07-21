@@ -12,10 +12,7 @@ const Home: React.FC = () => {
       <main>
         <HomeTemplate />
 
-        <a href="https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJly9HHxWbyZMRDf5CthB0Y5M">
-          {" "}
-          teste aqui
-        </a>
+        <iframe src="https://g.page/r/CQOWBu1NSOrPEAg/review"> </iframe>
       </main>
     </div>
   );
