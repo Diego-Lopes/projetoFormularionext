@@ -4,23 +4,25 @@ interface sendMyNotificationInterface {
   userName: string;
   tel: string;
   email: string;
+  cep: string;
 }
 async function sendMyNotification({
   userName,
   tel,
   email,
+  cep,
 }: sendMyNotificationInterface): Promise<void> {
   const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
+    host: "smtp.zoho.com",
     port: 587,
     secure: false,
     auth: {
-      user: "diegojob09@gmail.com",
-      pass: "diego.lopes.18",
+      user: "teste351@zohomail.com",
+      pass: "diego.lopes",
     },
   });
   await transporter.sendMail({
-    from: "Marketing <marketing@lojasoi.com>",
+    from: "Marketing <teste351@zohomail.com>",
     to: "diegojob09@gmail.com",
     subject: "teste local",
     html: `
@@ -31,6 +33,7 @@ async function sendMyNotification({
         <strong>Nome: </strong>${userName}<br/>
         <strong>Email: </strong>${email}<br/>
         <strong>Telefone: </strong>${tel}<br/>
+        <strong>CEP: </strong>${cep}<br/>
       </p>
     `,
   });

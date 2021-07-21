@@ -6,11 +6,10 @@ const Home: React.FC = () => {
   return (
     <div>
       <Head>
-        <title>HomePage</title>
+        <title>Formulário Padrão</title>
       </Head>
 
       <main>
-        <h1>Oi</h1>
         <HomeTemplate />
 
         <a href="https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJly9HHxWbyZMRDf5CthB0Y5M"></a>
